@@ -1,7 +1,7 @@
 def Stringreverse(st):
 	if len(st)<2:
 		return st
-	return reverse(st[1:]) +st[0]
+	return Stringreverse(st[1:]) +st[0]
 
 print Stringreverse('nancy') #1 way not good as recursion uses more space
 
