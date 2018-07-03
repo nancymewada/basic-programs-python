@@ -1,0 +1,26 @@
+import pandas as pd
+
+from sqlalchemy import create_engine
+
+engine = create_engine('postgresql+psycopg2:'path')
+
+
+tbll = pd.read_sql_table('tbl',engine,schema='public')
+
+tbll.to_csv('tbl.csv')
+
+
+pp_mater_userlist = pd.read_sql(
+'''
+SELECT * from pp_mater_userlist where pp_mater_userlist.mail not in 
+(
+SELECT pp_unused_data.mail
+FROM pp_unused_data
+join pp_mater_userlist
+on pp_unused_data.mail = pp_mater_userlist.mail)
+''',engine)
+
+pp_mater_userlist.to_csv('ppData.csv')
+
+
+
